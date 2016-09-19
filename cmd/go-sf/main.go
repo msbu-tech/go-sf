@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"flag"
 
-	"github.com/msbu-tech/wundercafe/cmd/version"
+	"github.com/msbu-tech/go-sf/cmd/version"
 	"github.com/msbu-tech/go-sf/framework"
 )
 
