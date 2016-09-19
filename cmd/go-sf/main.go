@@ -41,10 +41,12 @@ func main() {
 		fmt.Println("\tTemplate Path: ", *tplPtr)
 		fmt.Println("\tOutput Path: ", *outputPtr)
 
-		err := framework.NewApp(*namePtr, *tplPtr)
+		err, app := framework.New(*namePtr, *authorPtr, *tplPtr, *outputPtr)
 		if err != nil {
 			fmt.Println(err)
 		}
+		app.Generate()
+		// TODO here
 		fmt.Println("Success.")
 	}
 }

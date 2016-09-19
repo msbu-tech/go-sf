@@ -24,6 +24,10 @@ func New(appname string, author string, tplPath string, outputPath string) (erro
 	return nil, app
 }
 
+func (app *AppData) Generate() {
+	fmt.Println("Processing...")
+}
+
 /*
 func NewApp(app_name string, tpl_name string) error {
 	//walk file list
