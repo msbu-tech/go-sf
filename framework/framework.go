@@ -2,18 +2,29 @@ package framework
 
 import (
     "fmt"
-	"os"
-	"path/filepath"
-	"strings"
-	"text/template"
+	// "os"
+	// "path/filepath"
+	// "strings"
+	// "text/template"
+	"time"
 )
 
-type StTplData struct {
-	Appname string
-	Author  string
-	Date    string
+type AppData struct {
+	Appname    string
+	Author     string
+	Date       string
+	TplPath    string
+	OutputPath string
 }
 
+func New(appname string, author string, tplPath string, outputPath string) (error, AppData) {
+	t := time.Now()
+	app := AppData{appname, author, fmt.Sprintf("%d-%.2d-%.2d", t.Year(), t.Month(), t.Day()), tplPath, outputPath}
+
+	return nil, app
+}
+
+/*
 func NewApp(app_name string, tpl_name string) error {
 	//walk file list
 	file_list, err := walkFileList(tpl_name)
@@ -104,3 +115,4 @@ func createFile(file_path string, app_name string, tpl_name string) error {
 
 	return nil
 }
+*/
