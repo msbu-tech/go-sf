@@ -46,8 +46,6 @@ func main() {
 			fmt.Println(err)
 		}
 		app.Generate()
-		// TODO here
-		fmt.Println("Success.")
 	}
 }
 

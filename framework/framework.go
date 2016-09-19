@@ -2,10 +2,10 @@ package framework
 
 import (
     "fmt"
-	// "os"
-	// "path/filepath"
-	// "strings"
-	// "text/template"
+	"os"
+	"path/filepath"
+	"strings"
+	"text/template"
 	"time"
 )
 
@@ -24,24 +24,23 @@ func New(appname string, author string, tplPath string, outputPath string) (erro
 	return nil, app
 }
 
-func (app *AppData) Generate() {
+func (app *AppData) Generate() error {
 	fmt.Println("Processing...")
-}
 
-/*
-func NewApp(app_name string, tpl_name string) error {
 	//walk file list
-	file_list, err := walkFileList(tpl_name)
+	file_list, err := walkFileList(app.TplPath)
 	if err != nil {
 		//log err
 		return err
 	}
 
 	//create file
-	err = createAppFiles(file_list, app_name, tpl_name)
+	err = app.createAppFiles(file_list)
 	if err != nil {
 		return err
 	}
+
+	fmt.Println("Success.")
 
 	return nil
 }
@@ -63,33 +62,31 @@ func walkFileList(path string) ([]string, error) {
 	return file_list, err
 }
 
-func createAppFiles(file_list []string, app_name string, tpl_name string) error {
+func (app *AppData) createAppFiles(file_list []string) error {
 	//remove if exist
-	err := os.RemoveAll(app_name)
+	err := os.RemoveAll(app.Appname)
 	if err != nil {
 		return err
 	}
 
 	//create file
 	for i := 0; i < len(file_list); i++ {
-		createFile(file_list[i], app_name, tpl_name)
+		app.createFile(file_list[i])
 	}
 
 	return nil
 }
 
-func createFile(file_path string, app_name string, tpl_name string) error {
-
-	app_tpl_data := StTplData{"demo", "cuishichao", "2016-09-17"}
+func (app *AppData) createFile(file_path string) error {
 
 	//rename file
-	temp := strings.Replace(file_path, tpl_name, app_name, -1)
+	temp := strings.Replace(file_path, app.TplPath, app.Appname, -1)
 	temp = strings.Replace(temp, ".tpl", "", -1)
 	tmpl, err := template.New("fileName").Parse(temp)
 	if err != nil {
 		return err
 	}
-	err = tmpl.Execute(os.Stdout, app_tpl_data)
+	err = tmpl.Execute(os.Stdout, app)
     fmt.Println()
 
 	dir, _ := filepath.Split(temp)
@@ -119,4 +116,3 @@ func createFile(file_path string, app_name string, tpl_name string) error {
 
 	return nil
 }
-*/

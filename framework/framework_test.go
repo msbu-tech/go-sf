@@ -14,8 +14,10 @@ func TestFrameworkdInit(t *testing.T) {
 	if app.Appname != "a" {
 		t.Error("Test init framework failed: values not match")
 	}
+}
 
-	if app.Date != "2016-09-19" {
-		t.Error("Test init date failed", app.Date)
-	}
+func TestGenerate(t *testing.T) {
+	_, app := New("a", "msbu-test", "template/service", "./test/")
+
+	app.Generate()
 }
