@@ -1,6 +1,5 @@
 #!/bin/sh
-PRODUCT_NAME="{{.Productname}}"
-APP_NAME="{{.Appname}}"
+APP_NAME="{{.AppName}}"
 
 rm -rf output
 mkdir -p output/app/$APP_NAME

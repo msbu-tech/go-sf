@@ -1,7 +1,8 @@
 package framework
 
 import (
-    "fmt"
+	"bytes"
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -10,16 +11,16 @@ import (
 )
 
 type AppData struct {
-	Appname    string
+	AppName    string
 	Author     string
 	Date       string
 	TplPath    string
 	OutputPath string
 }
 
-func New(appname string, author string, tplPath string, outputPath string) (error, AppData) {
+func New(appName string, author string, tplPath string, outputPath string) (error, AppData) {
 	t := time.Now()
-	app := AppData{appname, author, fmt.Sprintf("%d-%.2d-%.2d", t.Year(), t.Month(), t.Day()), tplPath, outputPath}
+	app := AppData{appName, author, fmt.Sprintf("%d-%.2d-%.2d", t.Year(), t.Month(), t.Day()), tplPath, outputPath}
 
 	return nil, app
 }
@@ -28,14 +29,14 @@ func (app *AppData) Generate() error {
 	fmt.Println("Processing...")
 
 	//walk file list
-	file_list, err := walkFileList(app.TplPath)
+	fileList, err := walkFileList(app.TplPath)
 	if err != nil {
 		//log err
 		return err
 	}
 
 	//create file
-	err = app.createAppFiles(file_list)
+	err = app.createAppFiles(fileList)
 	if err != nil {
 		return err
 	}
@@ -46,7 +47,7 @@ func (app *AppData) Generate() error {
 }
 
 func walkFileList(path string) ([]string, error) {
-	var file_list = make([]string, 0)
+	var fileList = make([]string, 0)
 	i := 0
 	err := filepath.Walk(path, func(path string, f os.FileInfo, err error) error {
 		if f == nil {
@@ -55,64 +56,77 @@ func walkFileList(path string) ([]string, error) {
 		if f.IsDir() {
 			return nil
 		}
-		file_list = append(file_list, path)
+		fileList = append(fileList, path)
 		i++
 		return nil
 	})
-	return file_list, err
+	return fileList, err
 }
 
-func (app *AppData) createAppFiles(file_list []string) error {
+func (app *AppData) createAppFiles(fileList []string) error {
 	//remove if exist
-	err := os.RemoveAll(app.Appname)
+	err := os.RemoveAll(app.OutputPath + "/" + app.AppName)
 	if err != nil {
 		return err
 	}
 
 	//create file
-	for i := 0; i < len(file_list); i++ {
-		app.createFile(file_list[i])
+	for i := 0; i < len(fileList); i++ {
+		app.createFile(fileList[i])
 	}
 
 	return nil
 }
 
-func (app *AppData) createFile(file_path string) error {
-
-	//rename file
-	temp := strings.Replace(file_path, app.TplPath, app.Appname, -1)
-	temp = strings.Replace(temp, ".tpl", "", -1)
-	tmpl, err := template.New("fileName").Parse(temp)
+func (app *AppData) createFile(filePath string) error {
+	// rename file
+	replacedFileName := strings.Replace(filePath, app.TplPath, app.OutputPath+"/"+app.AppName, -1)
+	tplFileName := strings.Replace(replacedFileName, ".tpl", "", -1)
+	fileNameTpl, err := template.New("file").Parse(tplFileName)
 	if err != nil {
 		return err
 	}
-	err = tmpl.Execute(os.Stdout, app)
-    fmt.Println()
 
-	dir, _ := filepath.Split(temp)
+	// create buffer
+	buffer := new(bytes.Buffer)
+	err = fileNameTpl.Execute(buffer, app)
+	if err != nil {
+		return err
+	}
 
-	//create dir
+	realFileName := buffer.String()
+
+	dir, _ := filepath.Split(realFileName)
+
+	// create dir
 	err = os.MkdirAll(dir, 0777)
 	if err != nil {
 		return err
 	}
 
-	//create file
-	fout, err := os.Create(temp)
+	// create file
+	fout, err := os.Create(realFileName)
 	defer fout.Close()
 	if err != nil {
 		return err
 	}
 
-	//build template
-	content := make([]byte, 10240)
-	fin, err := os.Open(file_path)
+	// build template
+	// content := make([]byte, 10240)
+	fin, err := os.Open(filePath)
 	defer fin.Close()
 	if err != nil {
 		return err
 	}
-	_, _ = fin.Read(content)
-	_, _ = fout.Write(content)
+	// _, _ = fin.Read(content)
+	contentTpl, err := template.ParseFiles(filePath)
+	if err != nil {
+		return err
+	}
+	buffer.Reset()
+	err = contentTpl.Execute(buffer, app)
+	// _, _ = fout.Write(buffer)
+	buffer.WriteTo(fout)
 
 	return nil
 }
