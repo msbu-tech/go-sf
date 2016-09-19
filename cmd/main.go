@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"framework"
+	"github.com/msbu-tech/go-sf/framework"
 )
 
 func main() {
