@@ -7,7 +7,15 @@ Service Framework generator in Go
 
 ## Install
 
+```
+go get github.com/msbu-tech/go-sf
+```
+
 ## Usage
+
+```
+go-sf -new -name=doctor -author=msbu -tpl=template/service -output=/path/to/output
+```
 
 ## License
 
