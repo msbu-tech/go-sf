@@ -112,21 +112,13 @@ func (app *AppData) createFile(filePath string) error {
 	}
 
 	// build template
-	// content := make([]byte, 10240)
-	fin, err := os.Open(filePath)
-	defer fin.Close()
-	if err != nil {
-		return err
-	}
-	// _, _ = fin.Read(content)
 	contentTpl, err := template.ParseFiles(filePath)
 	if err != nil {
 		return err
 	}
 	buffer.Reset()
 	err = contentTpl.Execute(buffer, app)
-	// _, _ = fout.Write(buffer)
-	buffer.WriteTo(fout)
+	_, err = buffer.WriteTo(fout)
 
 	return nil
 }
