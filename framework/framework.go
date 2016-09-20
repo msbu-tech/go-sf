@@ -120,5 +120,5 @@ func (app *AppData) createFile(filePath string) error {
 	err = contentTpl.Execute(buffer, app)
 	_, err = buffer.WriteTo(fout)
 
-	return nil
+	return err
 }
