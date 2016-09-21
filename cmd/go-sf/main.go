@@ -9,13 +9,14 @@ import (
 )
 
 var (
-	helpPtr    *bool   = flag.Bool("help", false, "Help")
-	versionPtr *bool   = flag.Bool("version", false, "Version Info")
-	newPtr     *bool   = flag.Bool("new", true, "New App")
-	namePtr    *string = flag.String("name", "demo", "App Name")
-	authorPtr  *string = flag.String("author", "MSBU", "App Author")
-	tplPtr     *string = flag.String("template", "service", "Template Path")
-	outputPtr  *string = flag.String("output", "./", "Output Path")
+	helpPtr      *bool   = flag.Bool("help", false, "Help")
+	versionPtr   *bool   = flag.Bool("version", false, "Version Info")
+	newPtr       *bool   = flag.Bool("new", true, "New App")
+	interfacePtr *bool   = flag.Bool("interface", true, "Create Interface")
+	namePtr      *string = flag.String("name", "demo", "App Name")
+	authorPtr    *string = flag.String("author", "MSBU", "App Author")
+	tplPtr       *string = flag.String("template", "service", "Template Path")
+	outputPtr    *string = flag.String("output", "./", "Output Path")
 )
 
 func main() {
