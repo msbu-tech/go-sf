@@ -40,17 +40,15 @@ func main() {
 		return
 	}
 
-	err, app := framework.New(*namePtr, *authorPtr, *tplPtr, *outputPtr)
-	if err != nil {
-		fmt.Println(err)
-	}
-
 	if *newPtr == true {
 		fmt.Println("New App")
 		fmt.Println("\tApp Name: ", *namePtr)
 		fmt.Println("\tTemplate Path: ", *tplPtr)
 		fmt.Println("\tOutput Path: ", *outputPtr)
-
+		err, app := framework.New(*namePtr, *authorPtr, *tplPtr, *outputPtr)
+		if err != nil {
+			fmt.Println(err)
+		}
 		app.Generate()
 	}
 
