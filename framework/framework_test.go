@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestFrameworkdInit(t *testing.T) {
+func TestFrameworkInit(t *testing.T) {
 	err, app := New("a", "b", "c", "d")
 	if err != nil {
 		t.Error("Test init framework failed")
