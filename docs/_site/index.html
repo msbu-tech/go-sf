@@ -20,53 +20,60 @@
         </div>
         <div id="menu">
           <div class="menu-item">
-            <a href="/">首页</a>
+            <a href="https://msbu-tech.github.io/">首页</a>
           </div>
           <div class="menu-item">
-            <a href="/weekly/">周刊</a>
+            <a href="https://msbu-tech.github.io/weekly/">周刊</a>
           </div>
           <div class="menu-item">
-            <a href="/share/">分享</a>
+            <a href="https://msbu-tech.github.io/share/">分享</a>
           </div>
           <div class="menu-item">
-            <a href="/project/">项目</a>
+            <a href="https://msbu-tech.github.io/project/">项目</a>
           </div>
           <div class="menu-item">
-            <a href="/blog/">博客</a>
+            <a href="https://msbu-tech.github.io/blog/">博客</a>
           </div>
           <div class="menu-item">
-            <a href="/about.html">关于</a>
+            <a href="https://msbu-tech.github.io/about.html">关于</a>
           </div>
         </div>
       </nav>
       <div id="content">
         <div class="page-title">
-          Dpp Service 框架生成工具
+          go-sf
         </div>
-        <div class="article">
-          <div class="article-title">
-            安装
-          </div>
-          <div class="article-main">
-            <pre class="highlight">
-              <code>go get github.com/msbu-tech/go-sf</code>
-            </pre>
-          </div>
-          <div class="article-title">
-            使用方法
-          </div>
-          <div class="article-main">
-            <pre class="highlight">
-              <code>go-sf -new -name=doctor -author=msbu -tpl=template/service -output=/path/to/output</code>
-            </pre>
-          </div>
-          <div class="article-title">
-            贡献
-          </div>
-          <div class="article-main">
-            <a href="https://github.com/msbu-tech/go-sf">msbu-tech/go-sf</a>
-          </div>
-        </div>
+        <h2 id="section">介绍</h2>
+
+<p>go-sf 是一个 Dpp Service 框架生成工具。</p>
+
+<p>go-sf 是一个合成词，Go 代表这个工具是用 Go 编写，sf 是『Service Frame』（微服务框架代码）的缩写。</p>
+
+<p>这是一个简单的提升开发效率的工具，由 MSBU Tech 成员利用业余时间完成。使用 Go 编写主要是为了练手，并没有什么特别的原因。如果有其它的实现，也欢迎分享出来。</p>
+
+<h2 id="section-1">安装</h2>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>go get github.com/msbu-tech/go-sf
+</code></pre>
+</div>
+
+<h2 id="section-2">使用方法</h2>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>go-sf -new -name<span class="o">=</span>doctor <span class="se">\</span>
+      -author<span class="o">=</span>msbu <span class="se">\</span>
+      -tpl<span class="o">=</span>template/service <span class="se">\</span>
+      -output<span class="o">=</span>/path/to/output
+</code></pre>
+</div>
+
+<h2 id="section-3">问题反馈</h2>
+
+<p>如果遇到 bug 或疑问，可以<a href="https://github.com/msbu-tech/go-sf/issues/new">新建 Issue</a> 进行反馈。</p>
+
+<h2 id="section-4">贡献代码</h2>
+
+<p><a href="https://github.com/msbu-tech/go-sf">msbu-tech/go-sf</a></p>
+
       </div>
       <footer>
         MSBU Tech &copy; 2016.
