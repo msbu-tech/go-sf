@@ -20,7 +20,7 @@ go get github.com/msbu-tech/go-sf
 ```shell
 go-sf -new -name=doctor \
       -author=msbu \
-      -tpl=template/service \
+      -template=template/service \
       -output=/path/to/output
 ```
 
