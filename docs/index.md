@@ -21,8 +21,23 @@ go-sf 是一个合成词，Go 代表这个工具是用 Go 编写，sf 是『Serv
 ## 安装
 
 ```shell
-go get github.com/msbu-tech/go-sf
+go get github.com/msbu-tech/go-sf/cmd/go-sf
 ```
+
+如果首次安装，请设置 `$GOPATH`:
+
+```
+$ mkdir $HOME/work
+$ export GOPATH=$HOME/work
+```
+
+并将 `$GOPATH` 添加到你的 `$PATH`:
+
+```
+$ export PATH=$PATH:$GOPATH/bin
+```
+
+详见： <https://golang.org/doc/code.html>
 
 ## 使用方法
 
