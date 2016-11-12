@@ -1,15 +1,6 @@
 ---
-layout: go-sf
+layout: project
 ---
-
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-<center>
-<p>
-<a class="github-button" href="https://github.com/msbu-tech/go-sf" data-icon="octicon-star" data-count-href="/msbu-tech/go-sf/stargazers" data-count-api="/repos/msbu-tech/go-sf#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star msbu-tech/go-sf on GitHub">Star</a>
-<a class="github-button" href="https://github.com/msbu-tech/go-sf/fork" data-icon="octicon-repo-forked" data-count-href="/msbu-tech/go-sf/network" data-count-api="/repos/msbu-tech/go-sf#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork msbu-tech/go-sf on GitHub">Fork</a>
-</p>
-</center>
-
 ## 介绍
 
 go-sf 是一个 Dpp Service 框架生成工具。
