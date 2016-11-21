@@ -9,7 +9,6 @@ import (
 )
 
 var (
-	argsNum    int     = flag.NArg()
 	helpPtr    *bool   = flag.Bool("help", false, "Help")
 	versionPtr *bool   = flag.Bool("version", false, "Version Info")
 	newPtr     *bool   = flag.Bool("new", true, "New App")
@@ -24,23 +23,16 @@ func main() {
 	flag.Usage = usage
 	flag.Parse()
 
-	if argsNum == 0 {
-		usage()
-		return
-	}
 	if *helpPtr == true {
 		usage()
 
 		return
-	}
-	if *versionPtr == true {
+	} else if *versionPtr == true {
 		fmt.Println("go-sf", version.Version)
 		fmt.Println("Copyright (c) MSBU-Tech, 2016")
 
 		return
-	}
-
-	if *newPtr == true {
+	} else if *newPtr == true {
 		fmt.Println("New App")
 		fmt.Println("\tApp Name: ", *namePtr)
 		fmt.Println("\tTemplate Path: ", *tplPtr)
@@ -51,8 +43,11 @@ func main() {
 		}
 
 		app.Generate()
-	}
+	} else {
+        usage()
 
+        return
+    }
 }
 
 func usage() {

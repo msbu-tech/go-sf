@@ -9,6 +9,6 @@
 class Service_Interface
 {
     public $arrInterfaces = array(
-        'sample' => 'service/Sample.php'
+        'sample' => 'service/Sample.php',
     );
 }
