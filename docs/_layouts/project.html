@@ -4,7 +4,7 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>项目 | MSBU Tech</title>
+  <title>go-sf | MSBU Tech</title>
   <link rel="stylesheet" href="https://msbu-tech.github.io/assets/css/style.css">
   <link rel="stylesheet" href="https://msbu-tech.github.io/assets/css/zenburn.css">
   <link rel="stylesheet" href="https://msbu-tech.github.io/assets/css/opensans.css">
@@ -38,12 +38,30 @@
           <a href="/about/">关于</a>
         </div>
       </div>
+      <div id="dropdown">
+        <a href="javascript:toggleDropdown()">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
       <div id="head">
-        MSBU Tech
+        <a href="/">MSBU Tech</a>
       </div>
     </div>
   </nav>
-
+<script>
+var isToggle = false;
+function toggleDropdown() {
+  var menu = document.getElementById("menu");
+  if (!isToggle) {
+    menu.className = "dropdown-menu";
+    menu.style.display = "block";
+  }
+  else {
+    menu.style.display = "none";
+  }
+  isToggle = !isToggle;
+}
+</script>
   <div class="wrapper">
     <div id="content">
 
